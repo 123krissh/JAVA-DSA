@@ -11,12 +11,23 @@ public class triangle {
             for(int j=1;j<=i;j++){
 
                 // star triangle
-                System.out.print("* ");
+                // System.out.print("* ");
 
                 // no. triangle
                 // System.out.print(j+" ");
+
+                // char. triangle
+                // System.out.print((char)(j+64)+" ");
+
+                // number-char. triangle
+                if (i%2!=0) {
+                    System.out.print(j+" ");
+                } else {
+                    System.out.print((char)(j+64)+" ");
+                } 
                  
             }
+            
             System.out.println();
         }
 
