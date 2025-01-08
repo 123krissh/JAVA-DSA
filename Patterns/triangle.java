@@ -16,6 +16,9 @@ public class triangle {
                 // no. triangle
                 // System.out.print(j+" ");
 
+                // Odd number triangle
+                // System.out.print((2*j-1)+" ");
+
                 // char. triangle
                 // System.out.print((char)(j+64)+" ");
 
