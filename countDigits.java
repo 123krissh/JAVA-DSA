@@ -11,7 +11,7 @@ public class countDigits {
         }
         System.out.println(count);
 
-
+ 
        // sum of digits
        Scanner sc = new Scanner(System .in);
        int n = sc.nextInt();
