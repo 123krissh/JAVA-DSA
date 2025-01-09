@@ -32,7 +32,6 @@ public class StarPyramid {
         }
 
 
-
         nsp = 1; nst = 2*n-3;
         for(int i=1;i<=n;i++){
             for(int j=1;j<=nsp;j++){
