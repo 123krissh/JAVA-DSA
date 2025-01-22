@@ -25,6 +25,7 @@ public class StarsReversTri {
                 System.out.print("* ");
             }
             System.out.println();
+            
         }
         
 
