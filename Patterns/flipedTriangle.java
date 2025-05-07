@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-package Patterns;
+package patterns;
 
 import java.util.Scanner;
 
