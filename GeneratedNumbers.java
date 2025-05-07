@@ -31,8 +31,11 @@ public class GeneratedNumbers {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.print("Enter N: ");
         int N = sc.nextInt(); // initial number of marbles
+        System.out.print("Enter A: ");
         int A = sc.nextInt(); // value A
+        System.out.print("Enter B: ");
         int B = sc.nextInt(); // value B
 
         int result = uniqueMarbleCounts(N, A, B);
