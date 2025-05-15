@@ -11,6 +11,7 @@ public class LongestSubarray {
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] > nums[i - 1]) {
                 increasingLen++;  // Continue the increasing subarray
+                System.out.println(increasingLen);
                 decreasingLen = 1;  // Reset the decreasing subarray length
             } else if (nums[i] < nums[i - 1]) {
                 decreasingLen++;  // Continue the decreasing subarray
