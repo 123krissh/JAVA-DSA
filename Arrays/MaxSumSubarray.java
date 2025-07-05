@@ -51,7 +51,8 @@ public class MaxSumSubarray {
     }
 
 
-    // -----More Optimized approach of maxSubarraySum : Kadane's Algorithm -------
+    // -----More Optimized approach of maxSubarraySum : Kadane's Algorithm ------- if all the elements are negative then it not work properly
+    // This algorithm finds the maximum sum of a contiguous subarray in an array of integers.
 
     public static void Kadanes(int numbers[]){
         int ms = Integer.MIN_VALUE;
