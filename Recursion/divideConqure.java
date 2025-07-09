@@ -4,14 +4,14 @@ public class divideConqure{
         if(si >= ei) {
             return;
         }
-        int mid = si + (si - ei)/2;
+        int mid = si + (ei - si)/2;
         mergeSort(arr, si, mid);
         mergeSort(arr, mid+1, ei);
         merge(arr, si, mid, ei);
     }
 
     public static void merge(int arr[], int si, int mid, int ei){
-        int temp[] = new int[si - ei + 1];
+        int temp[] = new int[ei - si + 1];
         // idx for 1st sorted part
         int i=si;
         // idx for 2nd sorted part
@@ -36,7 +36,7 @@ public class divideConqure{
         }
 
         // for leftover elements of 2nd sorted part
-        while (i <= ei) {
+        while (j <= ei) {
             temp[k++] = arr[j++];
         }
 
