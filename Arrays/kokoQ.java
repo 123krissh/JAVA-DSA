@@ -27,7 +27,7 @@ public class kokoQ {
     public int calTotalH(int[] piles, int k) {
         long totalH = 0;
         for (int i=0; i<piles.length; i++) {
-            totalH += (piles[i] + (long)k - 1) / k; // ceil(pile / h)
+            totalH += (piles[i] + k - 1) / k; // ceil value(pile / k)
         }
         return totalH > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)totalH;
     }
