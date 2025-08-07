@@ -60,7 +60,7 @@ public class LL {
         temp.next = newNode;
     }
 
-    public int removeFirst() {
+    public int removeFirst() { //O(1)
         if(size == 0) {
             System.out.println("LL is empty");
             return Integer.MIN_VALUE;
@@ -76,7 +76,7 @@ public class LL {
         return val;
     }
 
-    public int removeLast() {
+    public int removeLast() { //O(n)
          if(size == 0) {
             System.out.println("LL is empty");
             return Integer.MIN_VALUE;
@@ -98,6 +98,125 @@ public class LL {
         return val;
     }
 
+    public int itrSearch(int key) {  // O(n)
+        Node temp = head;
+        int i = 0;
+
+        while (temp != null) {
+            if(temp.data == key) {
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+
+        return -1;
+    }
+
+    public int helper(Node head, int key) { // O(n)
+        if(head == null) {
+            return -1;
+        }
+
+        if(head.data == key) {
+            return 0;
+        }
+
+        int idx = helper(head.next, key);
+        if(idx == -1) {
+            return -1;
+        }
+        return idx+1;
+    }
+
+    public int recSearch(int key){ 
+        return helper(head, key);
+    }
+
+    public void reverse() { // O(n)
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
+    public void deleteNthfromEnd(int n) {
+        // calculate size
+        int sz = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+
+        if (n == sz) {
+            head = head.next; // removeFirst
+            return;
+        }
+
+        // sz - n
+        int i = 1;
+        int iToFind = sz - n;
+        Node prev = head;
+        while (i < iToFind) {
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+        return;
+    }
+
+    // Slow-Fast Approch
+    public Node findMid(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+        }
+        return slow; // slow is mid node
+    }
+
+    public boolean isPalindrome() {
+        if (head == null || head.next == null) {
+             return true;
+        }
+        // 1. find mid
+        Node midNode = findMid(head);
+
+        // 2. reverse second half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev;
+        Node left = head;
+
+        // 3. check left half & right half 
+        while (right != null) {
+            if (left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
     public void printll() { // O(n)
         if(head == null) {
             System.out.println("Linked List is empty");
@@ -116,16 +235,23 @@ public class LL {
        
         ll.addFirst(2);
         ll.addFirst(1);
-        ll.addLast(4);
-        ll.addLast(5);
-        ll.add(2, 3);
+        ll.addLast(2);
+        // ll.addLast(1);
+        ll.add(3, 1);
         ll.printll();
-        System.out.println("size of LL: " + ll.size);
-        ll.removeFirst();
-        ll.printll();
-        System.out.println("size of LL after removing first element: " + ll.size);
-        ll.removeLast();
-        ll.printll();
-        System.out.println("size of LL after removing last element: " + ll.size);
+        // System.out.println("size of LL: " + ll.size);
+        // ll.removeFirst();
+        // ll.printll();
+        // System.out.println("size of LL after removing first element: " + ll.size);
+        // ll.removeLast();
+        // ll.printll();
+        // System.out.println("size of LL after removing last element: " + ll.size);
+        // System.out.println(ll.itrSearch(3));
+        // System.out.println(ll.recSearch(4));
+        // ll.reverse();
+        // ll.printll();
+        // ll.deleteNthfromEnd(3);
+        // ll.printll();
+        System.out.println("Is palindrom: " + ll.isPalindrome());
     }
 }
