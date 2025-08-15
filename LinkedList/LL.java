@@ -147,6 +147,30 @@ public class LL {
         head = prev;
     }
 
+    public void deleteKthNode(int k){
+        if (head == null) {
+            return;
+        }
+        if (k==1) {
+            Node temp = head;
+            head  = head.next;
+            return;
+        }
+        int cnt = 0;
+        Node temp = head;
+        Node prev = null;
+        while (temp != null) {
+            cnt++;
+            if (cnt == k) {
+                prev.next = prev.next.next;
+                break;
+            }
+            prev = temp;
+            temp = temp.next;
+        }
+        return;
+    }
+
     public void deleteNthfromEnd(int n) {
         // calculate size
         int sz = 0;
@@ -256,6 +280,8 @@ public class LL {
         ll.printll();
         System.out.println("size of LL: " + ll.size);
         ll.removeFirst();
+        ll.printll();
+        ll.deleteKthNode(3);
         ll.printll();
         System.out.println("size of LL after removing first element: " + ll.size);
         ll.removeLast();
