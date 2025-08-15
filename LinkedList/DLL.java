@@ -115,13 +115,13 @@ public class DLL {
         Node next = null;
 
         while (curr != null) {
-            next = curr.next;
-            curr.next = prev;
-            // curr.prev = next;
-            prev = curr;
-            curr = next;
+            next = curr.next;     // Store next
+        curr.next = prev;     // Reverse next
+        curr.prev = next;     // Reverse prev
+        prev = curr;          // Move prev forward
+        curr = next;          // Move curr forward
         }
-        head = prev;
+        head = prev; // New head is the last processed node
     }
 
     public static void main(String[] args) {
