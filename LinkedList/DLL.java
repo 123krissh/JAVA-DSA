@@ -94,19 +94,34 @@ public class DLL {
         System.out.println("null");
     }
 
-    public void displayRev() {
-        Node temp = head;
-        Node last = null;
-        System.out.println("Reverse Display: ");
-        while (temp != null) {
-            last = temp;
-            temp = temp.next;
+    // public void displayRev() {
+    //     Node temp = head;
+    //     Node last = null;
+    //     System.out.println("Reverse Display: ");
+    //     while (temp != null) {
+    //         last = temp;
+    //         temp = temp.next;
+    //     }
+    //     while(last != null) {
+    //         System.out.print(last.data + " -> ");
+    //         last = last.prev;
+    //     }
+    //     System.out.println("start");
+    // }
+
+    public void reverse() {
+        Node curr = head;
+        Node prev = null;
+        Node next = null;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            // curr.prev = next;
+            prev = curr;
+            curr = next;
         }
-        while(last != null) {
-            System.out.print(last.data + " -> ");
-            last = last.prev;
-        }
-        System.out.println("start");
+        head = prev;
     }
 
     public static void main(String[] args) {
@@ -121,6 +136,8 @@ public class DLL {
         // System.out.println("Found Node: " + val.data);
 
         dll.display(); 
-        dll.displayRev();
+        // dll.displayRev();
+        dll.reverse();
+        dll.display();
     }    
 }
