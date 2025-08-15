@@ -76,6 +76,7 @@ public class DLL {
         Node temp = head;
         while(temp != null){
             if(temp.data == data) {
+                // System.out.println("Found: "+ data);
                 return temp;
             }
             temp = temp.next;
@@ -116,6 +117,8 @@ public class DLL {
         dll.insertFirst(17);
         dll.insertLast(99);
         dll.insert(4, 4);
+        // Node val = dll.find(8);
+        // System.out.println("Found Node: " + val.data);
 
         dll.display(); 
         dll.displayRev();

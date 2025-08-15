@@ -10,7 +10,7 @@ public class LL {
             this.next = null;
         }
     }
-
+ 
     public static Node head;
     public static Node tail;
     public static int size;
@@ -217,6 +217,17 @@ public class LL {
         return true;
     }
 
+    // public static Node convertArr2LL(int[] arr){
+    //     Node head = new Node(arr[0]);
+    //     Node mover = head;
+    //     for (int i = 1; i < arr.length; i++) {
+    //         Node temp = new Node(arr[i]);
+    //         mover.next = temp;
+    //         mover = temp;
+    //     }
+    //     return head;
+    // }
+
     public void printll() { // O(n)
         if(head == null) {
             System.out.println("Linked List is empty");
@@ -232,26 +243,30 @@ public class LL {
 
     public static void main(String[] args) {
         LL ll = new LL();
-       
+
+        // int[] arr = {1,2,3,4,5};
+        // Node head = ll.convertArr2LL(arr);
+        // System.out.println("LL from array: " + head.data);
+
         ll.addFirst(2);
         ll.addFirst(1);
         ll.addLast(2);
         // ll.addLast(1);
         ll.add(3, 1);
         ll.printll();
-        // System.out.println("size of LL: " + ll.size);
-        // ll.removeFirst();
-        // ll.printll();
-        // System.out.println("size of LL after removing first element: " + ll.size);
-        // ll.removeLast();
-        // ll.printll();
-        // System.out.println("size of LL after removing last element: " + ll.size);
-        // System.out.println(ll.itrSearch(3));
-        // System.out.println(ll.recSearch(4));
-        // ll.reverse();
-        // ll.printll();
-        // ll.deleteNthfromEnd(3);
-        // ll.printll();
+        System.out.println("size of LL: " + ll.size);
+        ll.removeFirst();
+        ll.printll();
+        System.out.println("size of LL after removing first element: " + ll.size);
+        ll.removeLast();
+        ll.printll();
+        System.out.println("size of LL after removing last element: " + ll.size);
+        System.out.println(ll.itrSearch(1));
+        System.out.println(ll.recSearch(2));
+        ll.reverse();
+        ll.printll();
+        ll.deleteNthfromEnd(3);
+        ll.printll();
         System.out.println("Is palindrom: " + ll.isPalindrome());
     }
 }
