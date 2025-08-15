@@ -72,6 +72,17 @@ public class DLL {
         }
     }
 
+    public Node find(int data) {
+        Node temp = head;
+        while(temp != null){
+            if(temp.data == data) {
+                return temp;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+
     public void display() {
         Node temp = head;
 
