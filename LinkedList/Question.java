@@ -1,3 +1,5 @@
+import java.lang.classfile.components.ClassPrinter.ListNode;
+
 import LinkedList.LL;
 
 public class Question {
@@ -86,7 +88,7 @@ public class Question {
     }
     // OR
     public static LL mergeTwoLists(LL list1, LL list2) {
-    Node dummy = new ListNode();  // dummy node
+    Node dummy = new Node();  // dummy node
     Node tail = dummy;
 
     while (list1 != null && list2 != null) {
@@ -104,6 +106,32 @@ public class Question {
 
     return dummy.next;  // skip dummy, return real head
 }
+
+public Node addTwoNumbers(Node l1, Node l2) {
+        Node dummy = new Node();
+        Node curr = dummy;
+        int carry = 0;
+        while(l1 != null || l2 != null) {
+            int sum = carry;
+            if(l1!=null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }    
+            if(l2!=null){
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            Node newNode = new Node(sum%10);
+            carry = sum/10;
+            curr.next = newNode;
+            curr = curr.next;
+        }
+        if(carry != 0){
+            Node LastCarry = new Node(carry);
+            curr.next = LastCarry;
+        }
+        return dummy.next;
+    }
 
     public static void main(String[] args) {
         Question list = new Question();  
