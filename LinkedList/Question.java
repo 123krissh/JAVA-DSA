@@ -1,4 +1,7 @@
 import java.lang.classfile.components.ClassPrinter.ListNode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import LinkedList.LL;
 
@@ -131,6 +134,95 @@ public Node addTwoNumbers(Node l1, Node l2) {
             curr.next = LastCarry;
         }
         return dummy.next;
+    }
+
+    // sort a linked list brutefore LL -> array -> sort array -> LL
+    public Node sortList(Node head) {
+        int size = 0;
+        Node temp = head;
+        while(temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        int[] arr = new int[size];
+        int i = 0;
+        temp = head;
+        while(temp != null) {
+            arr[i] = temp.val;
+            i++;
+            temp = temp.next;
+        }
+
+        Arrays.sort(arr);
+
+        i = 0;
+        temp = head;
+        while(temp != null) {
+            temp.val = arr[i];
+            i++;
+            temp = temp.next;
+        }
+        return head;
+    }
+    // optimized sort using merge sort
+    public Node findMid(Node head) {
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+        }
+        return slow;
+    }
+    public Node sortLL(Node head){
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node mid = findMid(head);
+        Node left = head;
+        Node right = mid.next;
+        mid.next = null; // split the list into two halves
+
+        left = sortLL(left);
+        right = sortLL(right);
+        return mergeTwoLists(left, right);
+    } 
+
+    public static boolean cycle(){
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean cycleLength(){
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return findCycleLength(slow, fast);
+            }
+        }
+        return 0;
+    }
+    public static int findCycleLength(Node slow, Node fast){
+        int lenght = 1;
+        while (fast != slow) {
+            fast = fast.next;
+            lenght++;
+        }
+        return length;
     }
 
     public static void main(String[] args) {
