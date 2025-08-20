@@ -2,6 +2,7 @@ import java.lang.classfile.components.ClassPrinter.ListNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import LinkedList.LL;
 
@@ -110,7 +111,45 @@ public class Question {
     return dummy.next;  // skip dummy, return real head
 }
 
-public Node addTwoNumbers(Node l1, Node l2) {
+// Merge K Sorted lists [time complexity ~ O(kn)]
+public ListNode mergeKLists(ListNode[] lists) {
+    if (lists == null || lists.length == 0) {
+        return null;
+    }
+        ListNode head = lists[0];
+    for(int i=1; i<lists.length; i++) {
+        head = mergeTwoLists(head, lists[i]);
+    }
+    return head;
+}
+// More Optimized Solution using Min-heap priorityQueue
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null) {
+                pq.add(lists[i]);
+            }
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode curr = dummy;
+        while(!pq.isEmpty()) {
+            // Extract smallest node
+            ListNode minNode = pq.poll();
+            curr.next = minNode;
+            curr = curr.next;
+
+            // If next node exists, push it into PQ
+            if (minNode.next != null) {
+                pq.add(minNode.next);
+            }
+        }
+        return dummy.next;
+    }
+
+    public Node addTwoNumbers(Node l1, Node l2) {
         Node dummy = new Node();
         Node curr = dummy;
         int carry = 0;
