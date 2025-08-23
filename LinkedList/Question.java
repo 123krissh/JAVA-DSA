@@ -1,4 +1,3 @@
-import java.lang.classfile.components.ClassPrinter.ListNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -262,6 +261,116 @@ public ListNode mergeKLists(ListNode[] lists) {
             lenght++;
         }
         return length;
+    }
+
+    public ListNode swapPairs(ListNode head) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode temp = dummy;
+        while(temp.next != null && temp.next.next != null){
+            ListNode f = temp.next;
+            ListNode s = temp.next.next;
+
+            // int t = f.val;
+            // f.val = s.val;
+            // s.val = t;
+            // temp = temp.next.next;
+
+            f.next = s.next;
+            s.next = f;
+            temp.next = s;
+            temp = f;
+        }
+        return dummy.next;
+    }
+
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode temp1 = head;
+        for(int i=1;i<k;i++){
+            temp1 = temp1.next;
+        }
+        ListNode curr = temp1;
+        ListNode temp2 = head;
+        while(curr.next!=null){
+            curr = curr.next;
+            temp2 = temp2.next;
+        }
+        int tt = temp1.val;
+        temp1.val = temp2.val;
+        temp2.val = tt;
+        return head;
+        
+        // OR---->
+        // ListNode temp = head;
+        // int size = 0;
+        // while(temp != null) {
+        //     size++;
+        //     temp = temp.next;
+        // }
+        // int[] arr = new int[size+1];
+        // temp = head;
+        // int i = 0;
+        // while(temp != null){
+        //     arr[i] = temp.val;
+        //     i++;
+        //     temp = temp.next;
+        // }
+
+        // int idxfromSt = k-1;
+        // int idxfromEnd = size-k;
+
+        // int tp = arr[idxfromSt];
+        // arr[idxfromSt] = arr[idxfromEnd];
+        // arr[idxfromEnd] = tp;
+
+        // temp = head;
+        // i=0;
+        // while(temp != null){
+        //     temp.val = arr[i];
+        //     i++;
+        //     temp = temp.next;
+        // }
+        // return head;
+    }
+
+    // reverse kth node 
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null) return head;
+        ListNode newHead = reverseList(head.next);
+        ListNode nxt = head.next;
+        nxt.next = head;
+        head.next = null;
+        return newHead;
+    }
+    public ListNode getKthNode(ListNode temp, int k){
+        k -= 1;
+        while(temp != null && k > 0){
+            k--;
+            temp = temp.next;
+        }
+        return temp;
+    }
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode temp = head;
+        ListNode prev = null;
+        while(temp != null) {
+            ListNode kthNode = getKthNode(temp, k);
+            if(kthNode == null){
+                if(prev != null) prev.next = temp;
+                break;
+            }
+            ListNode NxtNode = kthNode.next;
+            kthNode.next = null;
+            reverseList(temp);
+            if(temp == head){
+                head = kthNode;
+            } else {
+                prev.next = kthNode;
+            }
+            prev = temp;
+            temp = NxtNode;
+        }
+        return head;
     }
 
     public static void main(String[] args) {
