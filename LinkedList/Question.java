@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -374,6 +375,12 @@ public ListNode mergeKLists(ListNode[] lists) {
     }
 
     public static void main(String[] args) {
-        Question list = new Question();  
+        LinkedList<Integer> ll = new LinkedList<>();
+        ll.addFirst(1);
+        ll.addFirst(2);
+        ll.addLast(3);
+        ll.addLast(4);
+
+        System.out.println(ll);
     }
 }

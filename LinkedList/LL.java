@@ -285,10 +285,7 @@ public class LL {
             }
             curr = curr.next;
         }
-
-                  // close >= list
         Dtemp.next = afterDummy.next; // join < list with >= list
-
         return dummy.next;
     }
 
