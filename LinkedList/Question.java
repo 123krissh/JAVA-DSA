@@ -1,3 +1,4 @@
+import java.lang.classfile.components.ClassPrinter.ListNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -112,11 +113,11 @@ public class Question {
 }
 
 // Merge K Sorted lists [time complexity ~ O(kn)]
-public ListNode mergeKLists(ListNode[] lists) {
+public Node mergeKLists(Node[] lists) {
     if (lists == null || lists.length == 0) {
         return null;
     }
-        ListNode head = lists[0];
+        Node head = lists[0];
     for(int i=1; i<lists.length; i++) {
         head = mergeTwoLists(head, lists[i]);
     }
@@ -374,8 +375,56 @@ public ListNode mergeKLists(ListNode[] lists) {
         return head;
     }
 
+    public void zigZag(){
+        Node mid = findMid(head);
+        Node curr = mid.next;
+        mid.next = null;
+        Node RH = reverseList(curr);
+        Node LH = head;
+        Node nxtL, nxtR;
+
+        while(LH != null && RH != null){
+            nxtL = LH.next;
+            LH.next RH;
+            nxtR = RH.next;
+            RH.next = nxtL
+
+            LH = nxtL;
+            RH = nxtR;
+        } 
+    }
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null) return null;
+        if(headA == headB) return headA;
+
+        ListNode tempA = headA;
+        ListNode tempB = headB;
+
+        while(tempA != tempB){
+            tempA = (tempA == null) ? headB : tempA.next;
+            tempB = (tempB == null) ? headA : tempB.next;
+        }
+        return tempA;
+
+        // Basic approch ---->
+        // ListNode tempB = headB;
+        // while(tempB != null){
+        //     ListNode tempA = headA;
+        //     while(tempA != null){
+        //         if(tempA == tempB){
+        //             return tempA;
+        //         }
+        //         tempA = tempA.next;
+        //     }
+        //     tempB = tempB.next;
+        // }
+        // return null;
+    }
+
     public static void main(String[] args) {
         LinkedList<Integer> ll = new LinkedList<>();
+        // From Java collection framwork we have directly use addLast, addFirst, removeFirst, removeLast methods
         ll.addFirst(1);
         ll.addFirst(2);
         ll.addLast(3);

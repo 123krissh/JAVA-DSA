@@ -285,6 +285,7 @@ public class LL {
             }
             curr = curr.next;
         }
+        after.next = null;
         Dtemp.next = afterDummy.next; // join < list with >= list
         return dummy.next;
     }
