@@ -43,12 +43,15 @@ public class basicSorting {
 
     public static void countSort(int arr[]) {
         int largest = Integer.MIN_VALUE;
+        int smallest = Integer.MAX_VALUE;
         for (int i = 0; i < arr.length; i++) {
             largest = Math.max(largest, arr[i]);
+            smallest = Math.min(smallest, arr[i]);
         }
-        int count[] = new int[largest + 1];
-        for (int i = 0; i < count.length; i++) {
-            count[arr[i]]++;
+        int range = largest - smallest + 1;
+        int count[] = new int[range];
+        for (int i = 0; i < arr.length; i++) {
+            count[arr[i] - smallest]++; // shift by smallest
         }
         // sorting and put elements in original array
         int j = 0;
