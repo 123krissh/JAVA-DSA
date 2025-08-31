@@ -38,6 +38,21 @@ public class StockSpan {
 //     }
 // }
 
+    // Daily Temperatures ------>
+    public int[] dailyTemperatures(int[] temperatures) {
+        Stack<Integer> s =new Stack<>();
+        int answer[] = new int[temperatures.length];
+
+        for (int i = 0; i < temperatures.length; i++) {
+            int currTemp = temperatures[i];
+            while(!s.isEmpty() && currTemp > temperatures[s.peek()]){
+                int idx = s.pop();
+                answer[idx] = i - idx;
+            }
+            s.push(i);
+        }
+        return answer;
+    }
 
     public static void main(String[] args) {
         int stocks[] = {100, 80, 60, 70, 60,  85, 100};
