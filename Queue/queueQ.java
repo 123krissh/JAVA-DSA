@@ -1,14 +1,16 @@
+import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class queueQ {
     // Queue implementation using circular array
-    static class Queue {
+    static class Queue1 {
         static int arr[];
         static int size;
         static int rear;
         static int front;
 
-        Queue(int n) {
+        Queue1(int n) {
             arr = new int[n];
             size = n;
             rear = -1;
@@ -121,7 +123,7 @@ public class queueQ {
     }
 
     public static void main(String[] args) {
-        // Queue q = new Queue(3);
+        // Queue1 q = new Queue1(3);
         // q.add(1);
         // q.add(2);
         // q.add(3);
@@ -129,11 +131,20 @@ public class queueQ {
         // q.add(4);
         // System.out.println(q.remove());
         // q.add(5);
-        
-        // while (!q.isEmpty()) {
-        //     System.out.println(q.peek());
-        //     q.remove();
-        // }
+
+
+        // java built in method in java collection framework 
+        // queue is interface not a class so it does not create object so we use linkedlist or ArrayDeque class object is created.
+        Queue<Integer> q = new LinkedList<>();
+        // OR
+        Queue<Integer> q = new ArrayDeque<>();
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        while (!q.isEmpty()) {
+            System.out.println(q.peek());
+            q.remove();
+        } 
 
         LLQueue q1 = new LLQueue();
         q1.add(1);
