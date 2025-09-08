@@ -122,6 +122,25 @@ public class queueQ {
         }
     }
 
+    public static  void reverse(Queue<Integer> q){
+        if(q.isEmpty()){
+            return;
+        }
+        int front = q.remove();
+        reverse(q);
+        q.add(front);
+    }
+    // OR
+    public static  void reverse(Queue<Integer> q){
+        Stack<Integer> s = new Stack<>();
+        while (!q.isEmpty()) {
+            s.push(q.remove());
+        }
+        while (!s.isEmpty()) {
+            q.add(s.pop());
+        }
+    }
+
     public static void main(String[] args) {
         // Queue1 q = new Queue1(3);
         // q.add(1);
