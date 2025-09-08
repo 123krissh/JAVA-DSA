@@ -5,6 +5,8 @@ public class Uppercase {
     
         System.out.println(toUpperCase(str)); // Converts the entire string to uppercase
         // or simply use str.toUpperCase() to convert the entire string to uppercase
+
+        System.out.println(lengthOfLastWord(str));
     }
 
     public static String toUpperCase(String str) {
@@ -25,5 +27,19 @@ public class Uppercase {
             }
         }
         return sb.toString();
+    }
+
+    public static int lengthOfLastWord(String str) {
+        int length = 0;
+        for(int i=str.length()-1; i>=0; i--){
+            if(str.charAt(i) != ' '){
+                length++;
+            } else {
+                if(length > 0){
+                    return length;
+                }
+            }
+        }
+        return length;
     }
 }
