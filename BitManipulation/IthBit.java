@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class IthBit {
     public static int getIthBit(int n, int i) {
         // Create a mask with the ith bit set
@@ -49,6 +52,33 @@ public class IthBit {
         return n & bitMask; 
     }
 
+    public static void oddEven(int n) {
+        int mask = 1; // Mask to check the least significant bit
+        // If the least significant bit is 1, then the number is odd
+        // If the least significant bit is 0, then the number is even
+        if ((n & mask) == 1) {
+            System.out.println("Odd");
+        } else {
+            System.out.println("Even");
+        }
+    }
+
+    public static void  powerSet(int[] nums){
+        int totalSubsets = 1 << nums.length; // 2^n subsets
+        ArrayList<ArrayList<Integer>> powerSet = new ArrayList<>();
+        for (int i = 0; i < totalSubsets; i++) {
+            ArrayList<Integer> subset = new ArrayList<>();
+            for (int j = 0; j < nums.length; j++) {
+                // Check if jth bit in i is set
+                if ((i & (1 << j)) != 0) {
+                    subset.add(nums[j]);
+                }
+            }
+            powerSet.add(subset);
+        }
+        System.out.println(powerSet);
+    }
+
      public static void main(String[] args) {
         System.out.println(getIthBit(5, 0)); 
         System.out.println(setIthBit(10, 2)); 
@@ -56,5 +86,10 @@ public class IthBit {
         System.out.println(updateIthBit(10, 2, 1));
         System.out.println(clearLastIthBit(10, 2));
         System.out.println(clearIBits(10, 2, 4));
+
+        oddEven(10); 
+        oddEven(0); 
+        oddEven(-3); 
+        powerSet(new int[]{1, 2, 3});
     }
 }
