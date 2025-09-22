@@ -68,6 +68,43 @@ public class question {
         return result/classes.length;
     }
 
+    // Count elements with maximum frquency occurrences ----->
+    public static int maxFrequencyElements(int[] nums) {
+        HashMap<Integer, Integer> freqMap = new HashMap<>();
+        int maxFreq = 0;
+        int totalOccurrences = 0;
+
+        for (int num : nums) {
+            int freq = freqMap.getOrDefault(num, 0) + 1;
+            freqMap.put(num, freq);
+
+            if (freq > maxFreq) {
+                maxFreq = freq;
+                totalOccurrences = freq;
+            } else if (freq == maxFreq) {
+                totalOccurrences += freq;
+            }
+        }
+
+        return totalOccurrences;
+
+        // HashMap<Integer, Integer> map = new HashMap<>();
+
+        // for(int i=0; i<nums.length; i++){
+        //     map.put(nums[i], map.getOrDefault(nums[i],0)+1);
+        // }
+
+        // int maxFreq = Collections.max(map.values());
+        // int totalOccurrences = 0;
+
+        // for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        //     if(entry.getValue() == maxFreq){
+        //         totalOccurrences += maxFreq;
+        //     }
+        // }
+        // return totalOccurrences;
+    }
+
     public static void main(String[] args) {
         int[] arr = {1, 2, 2, 1, 1, 3};
         System.out.println(uniqueOccurrences(arr));
@@ -76,5 +113,6 @@ public class question {
         int[][] classes = {{1, 2}, {3, 5}, {2, 2}};
         int extraStudents = 2;
         System.out.println(maxAverageRatio(classes, extraStudents));
+        System.out.println(maxFrequencyElements(arr));
     }
 }
