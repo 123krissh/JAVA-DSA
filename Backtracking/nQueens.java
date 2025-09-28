@@ -1,5 +1,5 @@
 public class nQueens {
-
+    static int count = 0;
     public static boolean isSafe(char board[][], int row, int col) {
         // vertical up
         for (int i = row-1; i >= 0; i--) {
@@ -26,6 +26,7 @@ public class nQueens {
         // base case
         if (row == board.length) {
             printBoard(board);
+            count++;
             return;
         }
         // column loop
@@ -59,6 +60,8 @@ public class nQueens {
                 board[i][j] = 'x'; 
             }
         }
+        
         nQueen(board, 0);
+        System.out.println("Total no. of solutions: " + count);
     }
 }
