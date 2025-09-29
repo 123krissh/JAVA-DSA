@@ -42,6 +42,33 @@ public class triangle {
     //     return dp[0];
     // }
 
+    // Minimum Score Triangulation of Polygon ---->
+    public static int minScoreTriangulation(int[] values) {
+        int n = values.length;
+        int[][] dp = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+        return solve(values, 0, n-1, dp);
+    }
+    public static int solve(int[] values, int i, int j, int[][] dp){
+        if(i + 1 == j){
+            return 0;
+        }
+        int ans = Integer.MAX_VALUE;
+
+        if(dp[i][j] != -1){
+            return dp[i][j];
+        }
+
+        for(int k=i+1; k<j; k++){
+            ans = Math.min(ans, values[i]*values[k]*values[j] + solve(values, i, k, dp) + solve(values, k, j, dp));
+        }
+        dp[i][j] = ans;
+        return dp[i][j];
+    }
+
     public static void main(String[] args) {
         List<List<Integer>> triangle = new ArrayList<>();
 
@@ -51,5 +78,7 @@ public class triangle {
         triangle.add(Arrays.asList(4, 1, 8, 3));
 
         System.out.println(minimumTotal(triangle));
+
+        System.out.println(minScoreTriangulation(new int[]{3,7,4,5}));
     }
 }
