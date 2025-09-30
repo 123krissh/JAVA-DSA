@@ -105,6 +105,49 @@ public class question {
         // return totalOccurrences;
     }
 
+    // Triangular Sum of an Array ---->
+    public int triangularSum(int[] nums) {
+        int n = nums.length;
+
+        // while(n>1){
+        //     for(int i=0; i<nums.length-1; i++){
+        //         nums[i] = (nums[i] + nums[i+1]) % 10;
+        //     }
+        //     n--;
+        // }
+        // return nums[0];
+
+        return sum(nums, n);
+    }
+    public int sum(int[] nums, int n){
+        if(n == 1){
+            return nums[0];
+        }
+        for(int i=0; i<n-1; i++){
+            nums[i] = (nums[i] + nums[i+1]) % 10;
+        }
+        return sum(nums, n-1);
+    }
+
+    // Min Max Game ----->
+    public int minMaxGame(int[] nums) {public int minMaxGame(int[] nums) {
+        return minmax(nums, nums.length);
+    }
+    public int minmax(int[] nums, int n){
+        if(n == 1){
+            return nums[0];
+        }
+        int[] newNums = new int[n / 2];
+        for (int i = 0; i < n / 2; i++) {
+            if (i % 2 == 0) {
+                newNums[i] = Math.min(nums[2 * i], nums[2 * i + 1]);
+            } else {
+                newNums[i] = Math.max(nums[2 * i], nums[2 * i + 1]);
+            }
+        }
+        return minmax(newNums, n/2);
+    }
+
     public static void main(String[] args) {
         int[] arr = {1, 2, 2, 1, 1, 3};
         System.out.println(uniqueOccurrences(arr));
