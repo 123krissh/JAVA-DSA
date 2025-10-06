@@ -28,6 +28,31 @@ public class profitSegments {
         return result;
     }
 
+    // Brute Force Approch ---->
+    public static int countProfitableSegments(int[] rideList, int targetPremiums) {
+        int n = rideList.length;
+        int totalSegments = 0;
+
+        // try all possible start points
+        for (int i = 0; i < n; i++) {
+            int premiumCount = 0;
+
+            // expand subarray to the right
+            for (int j = i; j < n; j++) {
+                // check if current ride is premium
+                if (rideList[j] % 2 != 0) {
+                    premiumCount++;
+                }
+
+                // if premium count matches target, count this subarray
+                if (premiumCount == targetPremiums) {
+                    totalSegments++;
+                }
+            }
+        }
+        return totalSegments;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();

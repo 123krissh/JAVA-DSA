@@ -14,7 +14,7 @@ public class prtnrClusterProduct {
         for (int i = 0; i < restaurantIds.size(); i++) {
             int hub = restaurantIds.get(i);
             int from = restaurantFrom.get(i);
-            int to = restaurantTo.get(i);
+            int to = restaurantTo.get(i); 
 
             hubConnections.computeIfAbsent(hub, k -> new ArrayList<>()).add(new int[]{from, to});
         }
