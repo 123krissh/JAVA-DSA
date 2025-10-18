@@ -81,7 +81,7 @@ public class BST2 {
         return new Info(false, size, min, max);
     }
 
-    // merge 2 BSTs ---->
+    // merge 2 BSTs ----> O(n+m) linear time
     public static Node mergeBSTs(Node root1, Node root2){
         ArrayList<Integer> arr1 = new ArrayList<>();
         getInorder(root1, arr1);
