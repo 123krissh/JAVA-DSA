@@ -70,7 +70,7 @@ public class heap {
         }
     }
 
-    // heap sort
+    // heap sort O(nlogn) build max heap for ascending order & min heap for descending order
     public static void heapSort(int arr[]) {
         // build max heap
         int n = arr.length;
@@ -87,7 +87,7 @@ public class heap {
             heapify(arr, 0, i);
         }
     }
-    public static void heapify(int arr[], int i, int size) {
+    public static void heapify(int arr[], int i, int size) { //O(logn)
         int left = 2*i + 1;
         int right = 2*i + 2;
         int maxIdx = i; 
