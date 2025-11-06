@@ -72,7 +72,7 @@ public class xSumSubarray {
             int[] top = pq.poll();
             sum += top[0] * top[1];
         }
-        return sum;
+        return sum; 
     }
 
     public static void main(String[] args) {
