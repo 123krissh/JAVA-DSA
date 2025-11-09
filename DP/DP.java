@@ -1,8 +1,10 @@
 public class DP {
-    // DP -> Two ways of solving problems:-
+    // DP is a technique that helps to efficiently solve a class of problems that have overlapping subproblems & optimal substructure property.
+    // Two ways of solving problems:-
     // 1. memoization approach (top-down) 2. tabulation approach (bottom-up)
+    
     // 7 important Qs or concepts on DP
-    // 1. Fibonacci number, 2. 0-1 Kanpsack, 3. Unbounded Kanpsack
+    // 1. Fibonacci number, 2. 0-1 Knapsack, 3. Unbounded Knapsack
     // 4. Longest Common Subsequence (Edit Distance(Levensthein Algorithm)), 5. kadane's Algorithm, 6. Catalan Number, 7. DP on grids(2D array)
     
     // memoization approach (top-down)
