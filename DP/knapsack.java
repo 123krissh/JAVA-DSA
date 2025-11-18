@@ -54,6 +54,7 @@ public class knapsack {
                 }
             }
         }
+        print(dp);
         return dp[n][w];
     }
 
@@ -80,8 +81,10 @@ public class knapsack {
 
         System.out.println(KnapsackR(wt, val, w, wt.length));
         System.out.println(KnapsackMemo(wt, val, w, wt.length, dp));
-        System.out.println(KnapsackTab(wt, val, w));
         print(dp);
+        System.out.println("tabulation DP array: ");
+        System.out.println(KnapsackTab(wt, val, w));
+        
         
     }
 }
