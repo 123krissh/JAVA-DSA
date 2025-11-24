@@ -83,6 +83,7 @@ public class knapsack {
         print(dp);
         return dp[n][w];
     }
+    // Rod cutting problem is exact similer to unbounded knapsack problem
 
     public static void print (int dp[][]){
         for (int i=0; i<dp.length; i++) {
@@ -94,7 +95,7 @@ public class knapsack {
         System.out.println();
     }
 
-    // Target sum Subset Exist or not - O(n*sum)
+    // Target sum Subset Exist or not (Varient of 01 knapsack problem) - O(n*sum)
     public static boolean targetSumSubset(int[] arr, int sum){
         int n = arr.length;
         boolean dp[][] = new boolean[n+1][sum+1];
