@@ -38,10 +38,41 @@ public class longestCommonSub {
         return dp[n][m];
     }
 
+    // Longest palindromic subString
+    public static String longestPalindrome(String s) {
+        int max = 0, start = 0, end = 0;
+        Boolean[][] dp = new Boolean[1001][1001];
+        for(int i=0; i<s.length(); i++) {
+            for(int j=i; j<s.length(); j++) {
+                if(isPalindrom(s, i, j, dp)){
+                    if((j-i+1) > max) {
+                        max = j-i+1;
+                        start = i;
+                        end = j;
+                    }
+                }
+            }
+        }
+        return s.substring(start, end+1);
+    }
+    public static boolean isPalindrom(String s, int i, int j, Boolean[][] dp) {
+        if(i >= j) {
+            return true;
+        }
+        if(dp[i][j] != null){
+            return dp[i][j];
+        }
+        if(s.charAt(i) == s.charAt(j)) {
+            return dp[i][j] = isPalindrom(s, i+1, j-1, dp);
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         String str1 = "abcdef";
         String str2 = "abcfed";
         System.out.println(lcs(str1, str2, str1.length(), str2.length()));
         System.out.println(lcsTab(str1, str2, str1.length(), str2.length()));
+        System.out.println(longestPalindrome("ababcaca"));
     }
 }
