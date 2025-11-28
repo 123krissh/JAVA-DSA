@@ -27,12 +27,18 @@ public class LevenshteinAlgo {
                 if (s1.charAt(i-1) == s2.charAt(j-1)) {
                     dp[i][j] = dp[i-1][j-1];
                 } else {
-                    dp[i][j] = 1 + Math.min(Math.min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]);
+                    int add = dp[i][j-1] + 1;
+                    int delete = dp[i-1][j] + 1;
+                    int replace = dp[i-1][j-1] + 1;
+                    dp[i][j] = Math.min(Math.min(add, delete), replace);
                 }
             }
         }
         return dp[m][n];
     }
+
+    // String Conversion with insertion & deletion only
+    // first find the lcs of both string then calculate difference b/w lcs & str1 and lcs & str2 then sum them.
 
     public static void main(String[] args) {
         System.out.println("Levenshtein vs Lavenstaein: " + EditDistance("Levenshtein", "Lavenstaein"));
