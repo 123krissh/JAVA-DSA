@@ -48,6 +48,38 @@ public class ways {
         }
         return dp[n][sum];
     }
+    // minimum coin change
+    public static int coinChange(int[] coin, int amount) {
+        int n = coin.length;
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount+1);
+        dp[0] = 0;
+        for(int i=0; i<=amount; i++) {
+            for(int c : coin){
+                if(i-c >= 0) {
+                    dp[i] = Math.min(dp[i], dp[i - c] + 1);
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+
+    public static int CoinChangeMemo(int[] coin, int amount, int[] dp1){
+        if(amount == 0) return 0;
+        if(amount < 0) return -1;
+
+        if(dp1[amount] != -2){
+            return dp1[amount];
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i=0; i<coin.length; i++) {
+            int ans = CoinChangeMemo(coin, amount-coin[i], dp1);
+            if(ans != -1) {
+                min = Math.min(min, 1+ans);
+            }
+        }
+        return dp1[amount] = (min == Integer.MAX_VALUE) ? -1 : min;
+    }
 
     public static void main(String[] args) {
         int[][] grid = {{5,2,4},{3,0,5},{0,7,2}};
@@ -68,5 +100,9 @@ public class ways {
         int[] coin = {2,3,5,6};
         int sum = 10;
         System.out.println(coinChangeWaysTab(coin, sum));
+        int[] dp1 = new int[sum + 1];
+        Arrays.fill(dp1, -2);
+        System.out.println(coinChange(coin, sum));
+        System.out.println(CoinChangeMemo(coin, sum, dp1));
     }
 }

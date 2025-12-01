@@ -87,6 +87,38 @@ public class longestCommonSub {
         return max;
     }
 
+    // WildCard Matching pattern
+    public static boolean isMatch(String s, String p) {
+        int n = s.length();
+        int m = p.length();
+
+        boolean[][] dp = new boolean[n+1][m+1];
+        dp[0][0] = true;
+
+        for (int i = 1; i < n+1; i++) {
+            dp[i][0] = false;
+        }
+        for (int j = 1; j < m+1; j++) {
+            if(p.charAt(j-1) == '*') {
+                dp[0][j] = dp[0][j-1];
+            } // else false which is by default false in java boolean array
+        }
+
+        // Bottom up
+        for(int i=1; i<n+1; i++) {
+            for(int j=1; j<m+1; j++) {
+                if(s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '?') {
+                    dp[i][j] = dp[i-1][j-1];
+                } else if (p.charAt(j-1) == '*') {
+                    dp[i][j] = dp[i][j-1] || dp[i-1][j];
+                } else {
+                    dp[i][j] = false;
+                }
+            }
+        }
+        return dp[n][m];
+    }
+
     // Longest palindromic subString
     public static String longestPalindrome(String s) {
         int max = 0, start = 0, end = 0;
@@ -133,5 +165,9 @@ public class longestCommonSub {
 
         int arr[] = {50, 3, 1, 1, 1, 40, 80};
         System.out.println(lis(arr));
+
+        String s = "baaabab";
+        String p = "*****ba*****ab";
+        System.out.println(isMatch(s, p));
     }
 }
