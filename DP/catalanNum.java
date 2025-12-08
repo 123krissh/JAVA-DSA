@@ -23,7 +23,7 @@ public class catalanNum {
         return dp[n];
     }
 
-    public static int CatalanTab(int n) {
+    public static int CatalanTab(int n) { // O(n^2)
         int[] dp = new int[n+1];
         dp[0] = 1;
         dp[1] = 1;
