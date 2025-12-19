@@ -69,11 +69,78 @@ public class MaxSumSubarray {
         System.out.println("max sum of subarray: "+ ms);
     }
 
+    // count subarrays with product less than k
+    public static int countSubarrayProd(int[] numbers, int k){
+        if (k <= 1) return 0;
+
+        int left = 0;
+        long product = 1;
+        int count = 0;
+
+        for (int right = 0; right < numbers.length; right++) {
+            product *= numbers[right];
+    
+            while (product >= k) {
+                product /= nums[left];
+                left++;
+            }
+
+            count += (right - left + 1);
+        }
+
+       return count;
+    }
+
+    // maximum product subarray
+    public static int maxProduct(int[] numbers) {
+        int maxProd = Integer.MIN_VALUE;
+        int preProd = 1, suffProd = 1;
+        int n = numbers.length;
+
+        for(int i=0; i<n; i++) {
+            if(preProd == 0) {
+                preProd = 1;
+            }
+            if(suffProd == 0) {
+                suffProd = 1;
+            }
+            preProd *= numbers[i];
+            suffProd *= numbers[n-i-1];
+
+            maxProd = Math.max(maxProd, Math.max(preProd, suffProd));
+        }
+        
+        return maxProd;
+
+        // int maxProd = Integer.MIN_VALUE;
+        // for(int i=0; i<nums.length; i++) {
+        //     int product = 1;
+        //     for(int j=i; j<nums.length; j++) {
+        //         product *= nums[j];
+        //         maxProd = Math.max(maxProd, product);
+        //     }
+        // }
+        // return maxProd;
+
+        // int ms = Integer.MIN_VALUE;
+        // int cp = 1;
+        // for(int i=0; i<nums.length; i++){
+        //     cp = cp * nums[i];
+        //     if (cp == 0) {
+        //         cp = 1;
+        //     }
+        //     ms = Math.max(cp, ms);
+        // }
+        // return ms;
+    }
+
     
     public static void main(String[] args) {
         int numbers[] = {1, -2, 6, -1, 3};
 
         maxSubarraySum(numbers);
         Kadanes(numbers);
+        countSubarrayProd(numbers, 50);
+        maxProduct(numbers);
     }
 }
