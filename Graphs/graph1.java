@@ -53,7 +53,7 @@ public class graph1 {
         graph[4].add(new Edge(4, 2, 2));
     }
 
-    // BFS Traversal - O(V+E)
+    // BFS Traversal -- O(V+E)
     public static void bfs(ArrayList<Edge> graph[]) {
         Queue<Integer> q = new LinkedList<>();
         boolean[] vis = new boolean[graph.length];
@@ -86,7 +86,7 @@ public class graph1 {
         }
     }
 
-    // check path b/w src - dest exist
+    // check path b/w src - dest exist -- O(V+E)
     public static boolean hasPath(ArrayList<Edge> graph[], int src, int dest, boolean vis[]) {
         if(src == dest) {
             return true;
@@ -117,5 +117,62 @@ public class graph1 {
         dfs(graph, 0, new boolean[V]);
         System.out.println();
         System.out.println(hasPath(graph, 0, 4, new boolean[V]));
+
+        cloneGraph(graph);
+    }
+
+    // clone graph 
+    public static void cloneGraph(ArrayList<Edge> graph[]) {
+        int V = graph.length;
+        ArrayList<Edge>[] newGraph = new ArrayList[V];
+        for(int i=0; i<V; i++) {
+            newGraph[i] = new ArrayList<>();
+        }
+
+        for(int i=0; i<V; i++) {
+            for(int j=0; j<graph[i].size(); j++) {
+                Edge e = graph[i].get(j);
+                newGraph[e.src].add(new Edge(e.src, e.dest, e.wt));
+            }
+        }
+
+        for (ArrayList<Edge> arrayList : newGraph) {
+            for (Edge e : arrayList) {
+                System.out.println(e.src + "->" + e.dest + " " + "wt:" + e.wt);
+            }
+        }
+    }
+
+    // leetcode style clone graph 
+    static class Node {
+        int val;
+        ArrayList<Node> neighbors;
+
+        public Node(int v) {
+            this.val = v;
+            this.neighbors = new ArrayList<>();
+        }
+    }
+    
+    public static Node createClone(Node node, HashMap<Node, Node> map) {
+        Node newNode = new Node(node.val);
+        map.put(node, newNode);
+        for(Node neighbor : node.neighbors) {
+            if(!map.containsKey(neighbor)) {
+                // not cloned
+                newNode.neighbors.add(createClone(neighbor, map));
+            } else {
+                // already cloned
+                newNode.neighbors.add(map.get(neighbor));
+            }
+        }
+        return newNode;
+    }
+    public static Node cloneGraph(Node node) {
+        if(node == null) {
+            return null;
+        }
+        HashMap<Node, Node> map = new HashMap<>();
+        return createClone(node, map);
     }
 }
