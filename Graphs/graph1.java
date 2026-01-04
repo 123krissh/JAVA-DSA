@@ -71,6 +71,28 @@ public class graph1 {
             }
         }
     }
+    // bfs on connected components
+    public static void bfsCC(ArrayList<Edge>[] graph) {
+        boolean[] vis = new boolean[graph.length];
+        for(int i=0; i<graph.length; i++) {
+            if(!vis[i]) {
+                // similar to normal bfs
+                Queue<Integer> q = new LinkedList<>();
+                q.add(i); // source = i
+                while(!q.isEmpty()) {
+                    int curr = q.remove();
+                    if(!vis[curr]) {
+                        System.out.print(curr + " ");
+                        vis[curr] = true;
+                        for(int j=0; j<graph[curr].size(); j++) {
+                            Edge e = graph[curr].get(j);
+                            q.add(e.dest);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     // DFS traversal -- O(V+E)
     public static void dfs(ArrayList<Edge> graph[], int curr, boolean vis[]) {
@@ -82,6 +104,15 @@ public class graph1 {
             Edge e = graph[curr].get(i);
             if(!vis[e.dest]) {
                 dfs(graph, e.dest, vis);
+            }
+        }
+    }
+    // dfs on connected components
+    public static void dfsCC(ArrayList<Edge> graph[]) {
+        boolean[] vis = new boolean[graph.length];
+        for(int i=0; i<graph.length; i++) {
+            if(!vis[i]) {
+                dfs(graph, i, vis);
             }
         }
     }
@@ -100,6 +131,7 @@ public class graph1 {
         }
         return false;
     }
+
 
     public static void main(String[] args) {
         int V = 5; // no. of vertices
